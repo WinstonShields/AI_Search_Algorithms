@@ -3,7 +3,7 @@ import copy
 import numpy as np
 
 
-def successor(pegboard, best_first):
+def successor(pegboard, get_heuristic, get_cost):
     # Get list of empty spots on pegboard.
     empty_spots = pegboard.empty_spots()
 
@@ -24,9 +24,8 @@ def successor(pegboard, best_first):
             # to the empty spot.
             possible_states.append(state1)
 
-            if best_first:
-                # If this is a best first algorithm, get the heuristic value
-                # of the state.
+            if get_heuristic:
+                # Get heuristic value if heuristic is enabled.
                 state1.heuristic_value = heuristic(state1)
 
         state2 = Pegboard()
@@ -38,9 +37,8 @@ def successor(pegboard, best_first):
             # to the empty spot.
             possible_states.append(state2)
 
-            if best_first:
-                # If this is a best first algorithm, get the heuristic value
-                # of the state.
+            if get_heuristic:
+                # Get heuristic value if heuristic is enabled.
                 state2.heuristic_value = heuristic(state2)
 
         state3 = Pegboard()
@@ -52,9 +50,8 @@ def successor(pegboard, best_first):
             # to the empty spot.
             possible_states.append(state3)
 
-            if best_first:
-                # If this is a best first algorithm, get the heuristic value
-                # of the state.
+            if get_heuristic:
+                # Get heuristic value if heuristic is enabled.
                 state3.heuristic_value = heuristic(state3)
 
         state4 = Pegboard()
@@ -66,9 +63,8 @@ def successor(pegboard, best_first):
             # to the empty spot.
             possible_states.append(state4)
 
-            if best_first:
-                # If this is a best first algorithm, get the heuristic value
-                # of the state.
+            if get_heuristic:
+                # Get heuristic value if heuristic is enabled.
                 state4.heuristic_value = heuristic(state4)
 
     # Return all possible states as a list.

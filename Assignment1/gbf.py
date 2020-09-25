@@ -30,7 +30,7 @@ def greedy_best_first(pegboard, q, visited, solution_path, solved):
         # Create a list of the possible states of the current pegboard
         # state with best first algorithm set to true, in order to enable
         # heuristic value logging.
-        possible_states = functions.successor(node, True)
+        possible_states = functions.successor(node, True, False)
 
         # Sort the possible states by lowest heurstic value to highest so that
         # the path with the lowest heuristic value is searched first.

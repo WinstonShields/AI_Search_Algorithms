@@ -12,6 +12,7 @@ class Pegboard:
         self._complete = False
         self._previous = None
         self._heuristic_value = 0
+        self._cost = 0
 
     # Getter for 2D board array.
     @property
@@ -82,6 +83,16 @@ class Pegboard:
     @heuristic_value.setter
     def heuristic_value(self, value):
         self._heuristic_value = value
+
+    # Getter for cost.
+    @property
+    def cost(self):
+        return self._cost
+
+    # Setter for cost.
+    @cost.setter
+    def cost(self, value):
+        self._cost = value
 
     # Create and set up the board.
     def create_board(self, dimensions):

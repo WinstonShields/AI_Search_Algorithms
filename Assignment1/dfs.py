@@ -27,7 +27,7 @@ def depth_first_search(pegboard, q, visited, solution_path, solved):
         node = q.popleft()
         # Create a list of the possible states of the current pegboard
         # state.
-        possible_states = functions.successor(node, False)
+        possible_states = functions.successor(node, False, False)
         print(node.board)
         print(node.actions + '\n')
 
