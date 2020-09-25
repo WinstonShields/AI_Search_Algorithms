@@ -31,7 +31,6 @@ def a_star_start(pegboard):
 
     if not solved:
         print("\nSolution not found.")
-
         print(f"Nodes Explored: {num_of_nodes_explored}")
         print(f"Time Complexity: {time.time() - start_time} seconds")
 
