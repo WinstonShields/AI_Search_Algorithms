@@ -12,7 +12,8 @@ class Pegboard:
         self._complete = False
         self._previous = None
         self._heuristic_value = 0
-        self._cost = 0
+        self._cost_g = 0
+        self._cost_f = 0
 
     # Getter for 2D board array.
     @property
@@ -84,15 +85,25 @@ class Pegboard:
     def heuristic_value(self, value):
         self._heuristic_value = value
 
-    # Getter for cost.
+    # Getter for cost of previous state to next state.
     @property
-    def cost(self):
-        return self._cost
+    def cost_g(self):
+        return self._cost_g
 
-    # Setter for cost.
-    @cost.setter
-    def cost(self, value):
-        self._cost = value
+    # Setter for cost of previous state to next state.
+    @cost_g.setter
+    def cost_g(self, value):
+        self._cost_g = value
+
+    # Getter for the estimated cost of cheapest solution.
+    @property
+    def cost_f(self):
+        return self._cost_f
+
+    # Setter for the estimated cost of cheapest solution.
+    @cost_f.setter
+    def cost_f(self, value):
+        self._cost_f = value
 
     # Create and set up the board.
     def create_board(self, dimensions):
@@ -227,3 +238,9 @@ class Pegboard:
     def goal(self, pegboard):
         if np.count_nonzero(pegboard.board == 1) == 1:
             pegboard.complete = True
+
+    # Set the estimated cost of cheapest solution.
+    # Estimated Cost of Cheapest Solution = (Cost From Previous State to Current State) + Heuristic
+    # f(n) = g(n) + h(n)
+    def calculate_cost_f(self):
+        self.cost_f = self.cost_g + self.heuristic_value

@@ -70,7 +70,7 @@ def choose_search_algorithm(pegboard):
             gbf.greedy_best_start(pegboard)
             break
         elif choice == 4:
-            a_star.a_star_search(pegboard)
+            a_star.a_star_start(pegboard)
             break
         else:
             print("Invalid option")

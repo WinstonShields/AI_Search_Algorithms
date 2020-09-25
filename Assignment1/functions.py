@@ -28,6 +28,12 @@ def successor(pegboard, get_heuristic, get_cost):
                 # Get heuristic value if heuristic is enabled.
                 state1.heuristic_value = heuristic(state1)
 
+            if get_cost:
+                # Get cost value of the previous state to the next state.
+                state1.cost_g = state1.cost_g + 1
+                # Get the estimated cost of the cheapest solution.
+                state1.calculate_cost_f()
+
         state2 = Pegboard()
         state2 = copy.deepcopy(pegboard)
         state2.previous = pegboard
@@ -40,6 +46,12 @@ def successor(pegboard, get_heuristic, get_cost):
             if get_heuristic:
                 # Get heuristic value if heuristic is enabled.
                 state2.heuristic_value = heuristic(state2)
+
+            if get_cost:
+                # Get cost value of the previous state to the next state.
+                state2.cost_g = state2.cost_g + 1
+                # Get the estimated cost of the cheapest solution.
+                state2.calculate_cost_f()
 
         state3 = Pegboard()
         state3 = copy.deepcopy(pegboard)
@@ -54,6 +66,12 @@ def successor(pegboard, get_heuristic, get_cost):
                 # Get heuristic value if heuristic is enabled.
                 state3.heuristic_value = heuristic(state3)
 
+            if get_cost:
+                # Get cost value of the previous state to the next state.
+                state3.cost_g = state3.cost_g + 1
+                # Get the estimated cost of the cheapest solution.
+                state3.calculate_cost_f()
+
         state4 = Pegboard()
         state4 = copy.deepcopy(pegboard)
         state4.previous = pegboard
@@ -66,6 +84,12 @@ def successor(pegboard, get_heuristic, get_cost):
             if get_heuristic:
                 # Get heuristic value if heuristic is enabled.
                 state4.heuristic_value = heuristic(state4)
+
+            if get_cost:
+                # Get cost value of the previous state to the next state.
+                state4.cost_g = state4.cost_g + 1
+                # Get the estimated cost of the cheapest solution.
+                state4.calculate_cost_f()
 
     # Return all possible states as a list.
     return possible_states
