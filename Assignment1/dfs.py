@@ -1,5 +1,9 @@
 import functions
 from collections import deque
+import time
+
+# Initialize number of nodes explored.
+num_of_nodes_explored = 0
 
 def depth_first_search_start(pegboard):
     
@@ -15,13 +19,22 @@ def depth_first_search_start(pegboard):
     solved = False
     # Initialize a list for the path that succeeds.
     solution_path = []
+    # Set start time for time complexity.
+    start_time = time.time()
 
-    depth_first_search(pegboard, q, visited, solution_path, solved)
+    [solved, num_of_nodes_explored] = depth_first_search(pegboard, q, visited, solution_path, solved, start_time)
+
+    if not solved:
+        print("\nSolution not found.")
+
+        print(f"Nodes Explored: {num_of_nodes_explored}")
+        print(f"Time Complexity: {time.time() - start_time} seconds")
 
 
-def depth_first_search(pegboard, q, visited, solution_path, solved):
+def depth_first_search(pegboard, q, visited, solution_path, solved, start_time):
     # Append to front of queue so that the search will go down one path first.
     q.appendleft(pegboard)
+    global num_of_nodes_explored
     while q:
         # Pop a pegboard state.
         node = q.popleft()
@@ -58,7 +71,10 @@ def depth_first_search(pegboard, q, visited, solution_path, solved):
                 print(state.board)
                 print(state.actions + '\n')
 
-            exit("\nSolution found!")
+            print("----------------------")
+            print("\nSolution found!")
+            print(f"Nodes Explored: {num_of_nodes_explored}")
+            exit(f"Time Complexity: {time.time() - start_time} seconds")
 
 
         for state in possible_states:
@@ -67,9 +83,15 @@ def depth_first_search(pegboard, q, visited, solution_path, solved):
                 # visited yet or if the board arrangement has already been added to
                 # to the queue.
                 visited.add(state)
-                depth_first_search(state, q, visited, solution_path, solved)
+                # Increment the number of nodes explored.
+                num_of_nodes_explored = num_of_nodes_explored + 1
+                # Recursively call the depth search first function to go down
+                # the path of best search first, putting a hold on the functions with
+                # a higher heurstic value.
+                depth_first_search(state, q, visited, solution_path, solved, start_time)
 
-            
+    # Return solved value and number of nodes explored.
+    return [solved, num_of_nodes_explored]
 
 
         

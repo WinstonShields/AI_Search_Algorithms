@@ -9,7 +9,12 @@ import a_star
 
 def choose_dimensions(pegboard):
 
-    print("Select rows and columns (m x n):\n\n"
+    dimensions = 0
+
+    # Set dimensions of board based on what choice is selected.
+
+    while True:
+        print("Select rows and columns (m x n):\n\n"
           "1. 4x4 \n"
           "2. 5x5 \n"
           "3. 6x6 \n"
@@ -18,9 +23,6 @@ def choose_dimensions(pegboard):
           "6. 9x9 \n"
           "7. 10x10 \n")
 
-    dimensions = 0
-
-    while True:
         choice = int(input("Enter Choice: "))
         if choice == 1:
             dimensions = 4
@@ -46,6 +48,7 @@ def choose_dimensions(pegboard):
         else:
             print("Invalid option")
 
+    # Return the dimensions.
     return dimensions
 
 
@@ -60,6 +63,7 @@ def choose_search_algorithm(pegboard):
 
         choice = int(input("Enter Choice: "))
 
+        # Call search algorithm function that user selects.
         if choice == 1:
             bfs.breadth_first_search(pegboard)
             break
@@ -77,11 +81,15 @@ def choose_search_algorithm(pegboard):
 
 
 def main():
+    # Create initial pegboard object.
     pegboard = Pegboard()
+    # Set the dimensions.
     dimensions = choose_dimensions(pegboard)
     print('\n')
+    # Call the create board function with the dimensions as the parameter.
     pegboard.create_board(dimensions)
     print('\n')
+    # Call function to select search algorithm.
     choose_search_algorithm(pegboard)
 
 

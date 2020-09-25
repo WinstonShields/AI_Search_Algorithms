@@ -1,5 +1,6 @@
 import functions
 from collections import deque
+import time
 
 def breadth_first_search(pegboard):
     print("Breadth-First Search:\n")
@@ -14,6 +15,11 @@ def breadth_first_search(pegboard):
     solved = False
     # Initialize a list for the path that succeeds.
     solution_path = []
+    # Initialize the number of nodes explored.
+    num_of_nodes_explored = 0
+
+    # Get the start time of Breadth First Search.
+    start_time = time.time()
 
     # While the queue is not empty...
     while q:
@@ -48,6 +54,8 @@ def breadth_first_search(pegboard):
                 q.append(state)
                 # Add the state to the set of visited nodes.
                 visited.add(state)
+                # Increment the number of nodes explored.
+                num_of_nodes_explored = num_of_nodes_explored + 1
 
     for state in solution_path:
         # For each state in the solution path, set the node's previous
@@ -64,7 +72,12 @@ def breadth_first_search(pegboard):
         print(state.board)
         print(state.actions + '\n')
 
+    print("---------------------------")
     if solved:
         print("\nSolution found!")
     else:
         print("\nSolution not found.")
+    
+    print(f"Nodes Explored: {num_of_nodes_explored}")
+    print(f"Time Complexity: {time.time() - start_time} seconds")
+    

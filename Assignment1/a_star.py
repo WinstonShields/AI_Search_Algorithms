@@ -1,6 +1,10 @@
 import functions
 from collections import deque
 import operator
+import time
+
+# Initialize the number of nodes explored.
+num_of_nodes_explored = 0
 
 
 def a_star_start(pegboard):
@@ -17,11 +21,23 @@ def a_star_start(pegboard):
     solved = False
     # Initialize a list for the path that succeeds.
     solution_path = []
+    # Initialize the number of nodes explored.
+    num_of_nodes_explored = 0
+    # Set start time for time complexity.
+    start_time = time.time()
 
-    a_star_search(pegboard, q, visited, solution_path, solved)
+    [solved, num_of_nodes_explored] = a_star_search(pegboard, q, visited, solution_path,
+                  solved, start_time)
+
+    if not solved:
+        print("\nSolution not found.")
+
+        print(f"Nodes Explored: {num_of_nodes_explored}")
+        print(f"Time Complexity: {time.time() - start_time} seconds")
 
 
-def a_star_search(pegboard, q, visited, solution_path, solved):
+def a_star_search(pegboard, q, visited, solution_path, solved, start_time):
+    global num_of_nodes_explored
     # Append to front of queue so that the search will go down one path first.
     q.appendleft(pegboard)
     while q:
@@ -68,7 +84,10 @@ def a_star_search(pegboard, q, visited, solution_path, solved):
                 print(state.board)
                 print(state.actions + '\n')
 
-            exit("\nSolution found!")
+            print("----------------------")
+            print("\nSolution found!")
+            print(f"Nodes Explored: {num_of_nodes_explored}")
+            exit(f"Time Complexity: {time.time() - start_time} seconds")
 
         for state in possible_states:
             if not functions.visited_state(visited, state):
@@ -76,4 +95,13 @@ def a_star_search(pegboard, q, visited, solution_path, solved):
                 # visited yet or if the board arrangement has already been added to
                 # to the queue.
                 visited.add(state)
-                a_star_search(state, q, visited, solution_path, solved)
+                # Increment the number of nodes explored.
+                num_of_nodes_explored = num_of_nodes_explored + 1
+                # Recursively call the A* search function to go down
+                # the path of best search first, putting a hold on the functions with
+                # a higher cost of completion.
+                a_star_search(state, q, visited, solution_path,
+                              solved, start_time)
+
+    # Return solved value and number of nodes explored.
+    return [solved, num_of_nodes_explored]
