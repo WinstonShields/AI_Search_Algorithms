@@ -67,7 +67,7 @@ def choose_search_algorithm(pegboard):
             dfs.depth_first_search_start(pegboard)
             break
         elif choice == 3:
-            gbf.greedy_best_first(pegboard)
+            gbf.greedy_best_start(pegboard)
             break
         elif choice == 4:
             a_star.a_star_search(pegboard)

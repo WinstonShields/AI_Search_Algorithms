@@ -1,2 +1,4 @@
 def a_star_search(pegboard):
-    print()
+    # Initialize opened list and closed list.
+    open = []
+    closed = []

@@ -21,7 +21,7 @@ def breadth_first_search(pegboard):
         node = q.popleft()
         # Create a list of the possible states of the current pegboard
         # state.
-        possible_states = functions.successor(node)
+        possible_states = functions.successor(node, False)
 
         print(node.board)
         print(node.actions + '\n')
