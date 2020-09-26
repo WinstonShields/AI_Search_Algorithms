@@ -10,6 +10,7 @@ import a_star
 def choose_dimensions(pegboard):
 
     dimensions = 0
+    english_style = False
 
     # Set dimensions of board based on what choice is selected.
 
@@ -21,7 +22,8 @@ def choose_dimensions(pegboard):
           "4. 7x7 \n"
           "5. 8x8 \n"
           "6. 9x9 \n"
-          "7. 10x10 \n")
+          "7. 10x10 \n"
+          "8. English-Style")
 
         choice = int(input("Enter Choice: "))
         if choice == 1:
@@ -45,11 +47,15 @@ def choose_dimensions(pegboard):
         elif choice == 7:
             dimensions = 10
             break
+        elif choice == 8:
+            dimensions = 7
+            english_style = True
+            break
         else:
             print("Invalid option")
 
     # Return the dimensions.
-    return dimensions
+    return [dimensions, english_style]
 
 
 def choose_search_algorithm(pegboard):
@@ -84,10 +90,10 @@ def main():
     # Create initial pegboard object.
     pegboard = Pegboard()
     # Set the dimensions.
-    dimensions = choose_dimensions(pegboard)
+    [dimensions, english_style] = choose_dimensions(pegboard)
     print('\n')
     # Call the create board function with the dimensions as the parameter.
-    pegboard.create_board(dimensions)
+    pegboard.create_board(dimensions, english_style)
     print('\n')
     # Call function to select search algorithm.
     choose_search_algorithm(pegboard)

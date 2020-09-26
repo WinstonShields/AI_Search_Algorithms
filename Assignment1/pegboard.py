@@ -106,13 +106,32 @@ class Pegboard:
         self._cost_f = value
 
     # Create and set up the board.
-    def create_board(self, dimensions):
+    def create_board(self, dimensions, english_style):
         # Initialize 2D array with selected dimensions, set all elements to one.
         self.board = np.ones([dimensions, dimensions], dtype=int)
 
         # Set rows and columns to the selected value.
         self.rows = dimensions
         self.columns = dimensions
+
+        if english_style:
+            self.board[0][0] = 2
+            self.board[0][1] = 2
+            self.board[1][0] = 2
+            self.board[1][1] = 2
+            self.board[5][0] = 2
+            self.board[5][1] = 2
+            self.board[6][0] = 2
+            self.board[6][1] = 2
+            self.board[0][5] = 2
+            self.board[0][6] = 2
+            self.board[1][5] = 2
+            self.board[1][6] = 2
+            self.board[5][5] = 2
+            self.board[5][6] = 2
+            self.board[6][5] = 2
+            self.board[6][6] = 2
+
 
         # Get list of indexes from the board array, where the element is 1.
         indexes = self.occupied_spots()
@@ -128,7 +147,11 @@ class Pegboard:
         self.remove_peg(empty_row, empty_col)
 
         print(f"{self.board}\n")
-        print(f"{self.rows} x {self.columns} Pegboard Created")
+
+        if english_style:
+            print("English Style Pegboard Created")
+        else:
+            print(f"{self.rows} x {self.columns} Pegboard Created")
 
     # Getter for list of empty spots.
     def empty_spots(self):
