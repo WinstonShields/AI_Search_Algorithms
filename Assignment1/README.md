@@ -4,6 +4,8 @@ One peg, denoted by a 1, remaining on the board means that the search algorithm
 successfully solved the game.
 
 ## Dependencies
+Python 3
+
 In your terminal, use the package manager pip to install numpy.
 ```bash
 pip install numpy
