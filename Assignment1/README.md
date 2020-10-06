@@ -6,6 +6,12 @@ successfully solved the game.
 ## Dependencies
 Python 3
 
+If you do not have the pip installer, you will need to install it.
+Type this command in the terminal:
+```bash
+python get-pip.py
+```
+
 In your terminal, use the package manager pip to install numpy.
 ```bash
 pip install numpy
