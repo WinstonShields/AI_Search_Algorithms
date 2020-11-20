@@ -54,7 +54,6 @@ def a_star_search(pegboard, q, visited, solution_path, solved, start_time):
 
         print(node.board)
         print(node.actions + '\n')
-        print(node.cost_f)
 
         if node.goal(node):
             # If the goal is reached, one peg left on the board, set the
